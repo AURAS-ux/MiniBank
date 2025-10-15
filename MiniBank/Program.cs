@@ -1,2 +1,49 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using MiniBank.Services;
+
+Console.WriteLine("======= MINIBANK =======");
+bool running = true;
+
+do
+{
+    Console.WriteLine("1. List accounts");
+    Console.WriteLine("2. Create account");
+    Console.WriteLine("3. Deposit");
+    Console.WriteLine("4. Withdraw");
+    Console.WriteLine("5. View statement");
+    Console.WriteLine("6. Run month-end");
+    Console.WriteLine("7. Exit");
+
+    Console.Write("Select:");
+    if (!int.TryParse(Console.ReadLine(), out int choice))
+    {
+        Console.WriteLine("Please enter a number from the above menu:");
+        continue;
+    }
+
+    AccountRegistry registry = new AccountRegistry();
+
+    switch (choice)
+    {
+        case 1:
+            registry.ListAccounts();
+            break;
+        case 2:
+            registry.CreateAccount();
+            break;
+        case 3:
+            Console.WriteLine("Deposit");
+            break;
+        case 4:
+            Console.WriteLine("Withdraw");
+            break;
+        case 5:
+            Console.WriteLine("View statement");
+            break;
+        case 6:
+            Console.WriteLine("Run month-end");
+            break;
+        case 7:
+            running = false;
+            break;
+    }
+} while (running);
