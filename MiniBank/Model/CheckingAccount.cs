@@ -4,7 +4,7 @@ namespace MiniBank.Model
 {
     public class CheckingAccount : BankAccount, IOverdraftPolicy
     {
-        public decimal OverdraftLimit { get; } = -200;
+        public decimal OverdraftLimit { get; } = Constants.overdraftLimit;
 
         public override bool Withdraw(decimal amount, out string? error)
         {

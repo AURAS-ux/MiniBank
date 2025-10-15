@@ -8,7 +8,7 @@ namespace MiniBank.Model
         {
             if(Balance < 0)
             {
-                Balance += Balance * 0.05m;
+                Balance += Balance * Constants.loanInterestRate;
             }
         }
 
