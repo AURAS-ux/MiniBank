@@ -4,7 +4,7 @@ namespace MiniBank.Model
 {
     public class BankAccount : ITransactable, IStatement
     {
-        public int Id { get; set; }
+        public int Id { get; } = new Random().Next(100000, 999999);
         public string Owner { get; set; } = string.Empty;
         public decimal Balance { get; set; }
 
