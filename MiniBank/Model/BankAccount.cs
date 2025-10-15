@@ -8,6 +8,11 @@ namespace MiniBank.Model
         public string Owner { get; set; } = string.Empty;
         public decimal Balance { get; set; }
 
+        public BankAccount()
+        {
+            Console.WriteLine($"Created {Id} {this.GetType()} for {Owner} with {Balance} EUR");
+        }
+
         public void Deposit(decimal amount)
         {
             this.Balance += amount;

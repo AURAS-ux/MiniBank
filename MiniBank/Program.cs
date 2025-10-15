@@ -2,6 +2,7 @@
 
 Console.WriteLine("======= MINIBANK =======");
 bool running = true;
+AccountRegistry registry = new AccountRegistry();
 
 do
 {
@@ -19,8 +20,6 @@ do
         Console.WriteLine("Please enter a number from the above menu:");
         continue;
     }
-
-    AccountRegistry registry = new AccountRegistry();
 
     switch (choice)
     {
