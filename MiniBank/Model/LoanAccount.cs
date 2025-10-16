@@ -1,9 +1,14 @@
 ﻿using MiniBank.Interfaces;
+using MiniBank.Model.enums;
 
 namespace MiniBank.Model
 {
     public class LoanAccount : BankAccount, IInterestBearing
     {
+        public LoanAccount(string owner, decimal balance) : base(owner, balance)
+        {
+           
+        }
         public void ApplyMonthlyInterest()
         {
             if(Balance < 0)
@@ -22,6 +27,7 @@ namespace MiniBank.Model
 
             Balance -= amount;
             error = null;
+            BankLog.Add(new Dictionary<DateTime, OperationType> { { DateTime.Now, OperationType.WITHDRAW } });
             return true;
         }
     }
