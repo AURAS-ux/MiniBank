@@ -2,6 +2,7 @@
 
 Console.WriteLine("======= MINIBANK =======");
 bool running = true;
+AccountRegistry registry = new AccountRegistry();
 
 do
 {
@@ -20,8 +21,6 @@ do
         continue;
     }
 
-    AccountRegistry registry = new AccountRegistry();
-
     switch (choice)
     {
         case 1:
@@ -31,10 +30,10 @@ do
             registry.CreateAccount();
             break;
         case 3:
-            Console.WriteLine("Deposit");
+            registry.InitDeposit();
             break;
         case 4:
-            Console.WriteLine("Withdraw");
+            registry.InitWithdraw();
             break;
         case 5:
             Console.WriteLine("View statement");
