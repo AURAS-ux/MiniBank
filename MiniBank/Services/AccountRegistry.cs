@@ -22,7 +22,7 @@ namespace MiniBank.Services
             while (true)
             {
                 Console.Write("Specify account type(Checking, Savings, Loan):");
-                string accountType = Console.ReadLine();
+                string accountType = Console.ReadLine()!;
                 if (accountType == null || accountType == string.Empty)
                 {
                     Console.WriteLine("Account type is required. Please specify account type(Checking, Savings, Loan):");
@@ -30,7 +30,7 @@ namespace MiniBank.Services
                 }
 
                 Console.Write("Who will own this account?:");
-                string owner = Console.ReadLine();
+                string owner = Console.ReadLine()!;
 
                 if (owner == null || owner == string.Empty)
                 {
