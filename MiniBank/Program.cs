@@ -30,10 +30,10 @@ do
             registry.CreateAccount();
             break;
         case 3:
-            Console.WriteLine("Deposit");
+            registry.InitDeposit();
             break;
         case 4:
-            Console.WriteLine("Withdraw");
+            registry.InitWithdraw();
             break;
         case 5:
             Console.WriteLine("View statement");

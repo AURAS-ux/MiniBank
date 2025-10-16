@@ -65,5 +65,90 @@ namespace MiniBank.Services
                 break;
             }
         }
+
+        public void InitWithdraw()
+        {
+            Console.WriteLine("====== Withdraw Initiated ======");
+            do
+            {
+                Console.WriteLine("Please specify your account id:");
+                int inputId = int.TryParse(Console.ReadLine(), out int id) ? id : -1;
+                if(inputId == -1)
+                {
+                    Console.WriteLine("Invalid account id. Please try again.");
+                    continue;
+                }
+                Console.WriteLine($"Initiated search for account with ID: {inputId}");
+                BankAccount? userAccount;
+                foreach (var account in Accounts)
+                {
+                    if(account.Id == inputId)
+                    {
+                        userAccount = account;
+                        Console.WriteLine($"Found account {userAccount.Id} of owner {userAccount.Owner} with balance {userAccount.Balance}");
+                        do
+                        {
+                            Console.WriteLine("Please specify the amount to withdraw:");
+                            if(!decimal.TryParse(Console.ReadLine(), out decimal amount))
+                            {
+                                Console.WriteLine("Invalid amount. Please try again.");
+                                continue;
+                            }
+                            if(userAccount.Withdraw(amount, out string? error))
+                            {
+                                Console.WriteLine($"Withdrawal of {amount} successful. New balance is {userAccount.Balance}");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Withdrawal failed: {error}");
+                            }
+                            Console.WriteLine("====== Withdraw Finished ======");
+                            return;
+                        }
+                        while (true);
+                    }
+                }
+            }
+            while (true);
+        }
+
+        public void InitDeposit()
+        {
+            Console.WriteLine("==== Deposit Initiated ====");
+            do
+            {
+                Console.WriteLine("Please specify your account id:");
+                int inputId = int.TryParse(Console.ReadLine(), out int id) ? id : -1;
+                if (inputId == -1)
+                {
+                    Console.WriteLine("Invalid account id. Please try again.");
+                    continue;
+                }
+                Console.WriteLine($"Initiated search for account with ID: {inputId}");
+                BankAccount? userAccount;
+                foreach (var account in Accounts)
+                {
+                    if (account.Id == inputId)
+                    {
+                        userAccount = account;
+                        Console.WriteLine($"Found account {userAccount.Id} of owner {userAccount.Owner} with balance {userAccount.Balance}");
+                        do
+                        {
+                            Console.WriteLine("Please specify the amount to deposit:");
+                            if (!decimal.TryParse(Console.ReadLine(), out decimal amount))
+                            {
+                                Console.WriteLine("Invalid amount. Please try again.");
+                                continue;
+                            }
+                            userAccount.Deposit(amount);
+                            Console.WriteLine("====== Deposit Finished ======");
+                            return;
+                        }
+                        while (true);
+                    }
+                }
+            }
+            while (true);
+        }
     }
 }
