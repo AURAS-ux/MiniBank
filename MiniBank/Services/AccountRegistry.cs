@@ -179,5 +179,17 @@ namespace MiniBank.Services
             }
             while (true);
         }
+
+        public void RunMonthEnd()
+        {
+            Console.WriteLine("==== Running Month End Process ====");
+
+            foreach (var account in Accounts.OfType<IInterestBearing>())
+            {
+                account.ApplyMonthlyInterest();
+            }
+
+            Console.WriteLine("==== Month End Process Finished ====");
+        }
     }
 }

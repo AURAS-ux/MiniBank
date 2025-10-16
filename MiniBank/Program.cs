@@ -39,7 +39,7 @@ do
             registry.RequestStatement();
             break;
         case 6:
-            Console.WriteLine("Run month-end");
+            registry.RunMonthEnd();
             break;
         case 7:
             running = false;

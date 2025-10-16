@@ -14,6 +14,7 @@ namespace MiniBank.Model
             if(Balance < 0)
             {
                 Balance += Balance * Constants.loanInterestRate;
+                BankLog.Add(new Dictionary<DateTime, OperationType> { { DateTime.Now, OperationType.INTEREST_LOAN } });
             }
         }
 

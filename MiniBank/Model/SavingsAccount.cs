@@ -1,4 +1,5 @@
 ﻿using MiniBank.Interfaces;
+using MiniBank.Model.enums;
 
 namespace MiniBank.Model
 {
@@ -12,6 +13,7 @@ namespace MiniBank.Model
             if(Balance > 0)
             {
                 Balance += Balance * Constants.savingsInterestRate;
+                BankLog.Add(new Dictionary<DateTime, OperationType> { { DateTime.Now, OperationType.INTEREST_SAVINGS } } );
             }
         }
     }

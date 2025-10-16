@@ -8,6 +8,6 @@ namespace MiniBank.Model.enums
 {
     public enum OperationType
     {
-        WITHDRAW, DEPOSIT, STATEMENT, CREATE_ACCOUNT
+        WITHDRAW, DEPOSIT, STATEMENT, CREATE_ACCOUNT, INTEREST_LOAN, INTEREST_SAVINGS
     }
 }
