@@ -1,9 +1,5 @@
-﻿using MiniBank.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MiniBank.Interfaces;
+using MiniBank.Model;
 
 namespace MiniBank.Services
 {
@@ -12,12 +8,12 @@ namespace MiniBank.Services
         public List<BankAccount> Accounts { get; set; }
         public void ListAccounts()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Listing accounts");
         }
 
         public void CreateAccount()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Creating account...");
         }
     }
 }
