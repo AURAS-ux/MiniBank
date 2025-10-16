@@ -48,13 +48,13 @@ namespace MiniBank.Services
                 switch(accountType.ToLower())
                 {
                     case "checking":
-                        Accounts.Add(new CheckingAccount() { Owner = owner,Balance = initialDeposit});
+                        Accounts.Add(new CheckingAccount(owner,initialDeposit));
                         break;
                     case "savings":
-                        Accounts.Add(new SavingsAccount() { Owner = owner,Balance = initialDeposit});
+                        Accounts.Add(new SavingsAccount(owner,initialDeposit));
                         break;
                     case "loan":
-                        Accounts.Add(new LoanAccount() { Owner = owner, Balance = initialDeposit });
+                        Accounts.Add(new LoanAccount(owner,initialDeposit));
                         break;
                     default:
                         Console.WriteLine("Invalid account type. Please specify account type(Checking, Savings, Loan):");
@@ -149,6 +149,47 @@ namespace MiniBank.Services
                 }
             }
             while (true);
+        }
+
+        public void RequestStatement()
+        {
+            Console.WriteLine("==== Statement Request Initiated ====");
+            do
+            {
+                Console.WriteLine("Please specify your account id:");
+                int inputId = int.TryParse(Console.ReadLine(), out int id) ? id : -1;
+                if (inputId == -1)
+                {
+                    Console.WriteLine("Invalid account id. Please try again.");
+                    continue;
+                }
+                Console.WriteLine($"Initiated search for account with ID: {inputId}");
+                BankAccount? userAccount;
+                foreach (var account in Accounts)
+                {
+                    if (account.Id == inputId)
+                    {
+                        userAccount = account;
+                        Console.WriteLine($"Found account {userAccount.Id} of owner {userAccount.Owner} with balance {userAccount.Balance}");
+                        userAccount.PrintStatement();
+                        Console.WriteLine("====== Statement Request Finished ======");
+                        return;
+                    }
+                }
+            }
+            while (true);
+        }
+
+        public void RunMonthEnd()
+        {
+            Console.WriteLine("==== Running Month End Process ====");
+
+            foreach (var account in Accounts.OfType<IInterestBearing>())
+            {
+                account.ApplyMonthlyInterest();
+            }
+
+            Console.WriteLine("==== Month End Process Finished ====");
         }
     }
 }
